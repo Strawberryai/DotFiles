@@ -40,6 +40,7 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFE
 set showmode                "Enables displaying the current mode
 set showcmd                 "Show partial commands in the last line of the screen
 
+set termguicolors       "Sets the color on the terminal
 set shell=zsh
 
 set splitbelow              "Set default split position
@@ -55,11 +56,10 @@ let mapleader=","             "The mapleader is ',' now
 noremap <leader>w :w<CR>
 noremap <leader>q :wq<CR>
 noremap <leader>gs :CocSearch
-noremap <space> /
-noremap <leader>fs :Files<CR>
-noremap <leader>bs :Buffer<CR>
+noremap <space> :/
 noremap <leader><cr> <cr><c-w>h:q<cr>
-noremap <leader>t :Vexplore<CR>
+noremap <leader>e :CocCommand explorer<CR>
+noremap <leader>t :Term<CR>
 " Vertical equivalent of C-w-n and C-w-N"
 noremap <leader>n :vnew<CR>
 
@@ -81,28 +81,27 @@ inoremap /* /**/<left><left>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-:imap ii <Esc>
-:vnoremap ii <Esc>
+imap ii <Esc>
+vnoremap ii <Esc>
 
-nnoremap <C-J> <C-W><C-J> "Ctrl-j to move down a split
-nnoremap <C-K> <C-W><C-K> "Ctrl-k to move up a split
-nnoremap <C-L> <C-W><C-L> "Ctrl-l to move	right a split
-nnoremap <C-H> <C-W><C-H> "Ctrl-h to move left a split
+"nnoremap <C-J> <C-W><C-J> "Ctrl-j to move down a split
+"nnoremap <C-K> <C-W><C-K> "Ctrl-k to move up a split
+"nnoremap <C-L> <C-W><C-L> "Ctrl-l to move	right a split
+"nnoremap <C-H> <C-W><C-H> "Ctrl-h to move left a split
 
-:tnoremap <Esc> <C-\><C-n>
-:tnoremap ii <C-\><C-n>
-:tnoremap <A-h> <C-\><C-N><C-w>h
-:tnoremap <A-j> <C-\><C-N><C-w>j
-:tnoremap <A-k> <C-\><C-N><C-w>k
-:tnoremap <A-l> <C-\><C-N><C-w>l
-:inoremap <A-h> <C-\><C-N><C-w>h
-:inoremap <A-j> <C-\><C-N><C-w>j
-:inoremap <A-k> <C-\><C-N><C-w>k
-:inoremap <A-l> <C-\><C-N><C-w>l
-:nnoremap <A-h> <C-w>h
-:nnoremap <A-j> <C-w>j
-:nnoremap <A-k> <C-w>k
-:nnoremap <A-l> <C-w>l
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+
+tnoremap <leader>q <C-\><C-N>:bd!<CR>
+tnoremap <Esc> <C-\><C-n>
+tnoremap ii <C-\><C-n>
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
 
 "4. Plugin's section
 call plug#begin('~/.config/nvim/plugged')
@@ -126,18 +125,15 @@ endif
 let g:airline_symbols.space = "\ua0"
 let g:airline_powerline_fonts = 1
 
-set termguicolors       "Sets the color on the terminal
-set background=dark     "Sets the background color
 colorscheme nightfly    "Name of the theme
+set background=dark     "Sets the background color
 
 ".5 Terminal configuration
-"let g:terminal_color_4 = '#ff0000'
-"let g:terminal_color_5 = 'green'
-
-"6. Custom commands
 function HrTermSplit()
     :sp
     :term
+    :res 15
+    :startinsert
 endfunction
 command Term call HrTermSplit()
 
