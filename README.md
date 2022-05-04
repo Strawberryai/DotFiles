@@ -9,16 +9,19 @@ system):
 Install neovim (apt):
 ```
 sudo apt install neovim
+sudo apt-get install fonts-powerline
 ```
 
 Install [vim-plug](https://github.com/junegunn/vim-plug):
 ```
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
 
-Install [nodejs]() for coc completion:
+Install [nodejs](https://github.com/nodesource/distributions/blob/master/README.md#debinstall) for coc completion:
 ```
-curl -sL install-node.vercel.app/lts | bash
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
 ```
 
 Set up the config files:
