@@ -42,6 +42,7 @@ function neovimINSTALL(){
     sudo apt-get install fonts-powerline
 
     echo "Installing plug-install for Unix,Linux..."
+    sudo apt install curl
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
