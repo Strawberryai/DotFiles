@@ -35,6 +35,7 @@ function HELP(){
 ############################################################
 function neovimINSTALL(){
     echo "Installing neovim..."
+    sudo apt update
     sudo apt install neovim
 
     echo "Installing powerline fonts..."
