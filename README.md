@@ -3,8 +3,13 @@ These are my [NeoVim](https://neovim.io/) configuration files. It includes my
 keybinds and plugins wich makes programming on the terminal more enjoyable.
 
 # Installation
-To install NeoVim with this configuration follow these commands (on a Unix like
+To install NeoVim with this configuration use the installation script or follow these commands (on a Unix like
 system):
+
+Installation script:
+```
+./installer.bash
+```
 
 Install neovim (apt):
 ```
