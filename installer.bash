@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# Copyright <AÑO> <TITULAR DEL COPYRIGHT>
+# Copyright <2022> <Strawberryai>
 # Por la presente se concede permiso, libre de cargos, a cualquier persona que obtenga una copia 
 # de este software y de los archivos de documentación asociados (el "Software"), a utilizar el 
 # Software sin restricción, incluyendo sin limitación los derechos a usar, copiar, modificar, 
@@ -18,14 +18,14 @@
 # O CUALQUIER OTRO MOTIVO, DERIVADAS DE, FUERA DE O EN CONEXIÓN CON EL SOFTWARE O SU USO U OTRO TIPO 
 # DE ACCIONES EN EL SOFTWARE.
 
- 
 NO_EXECUTION="FALSE"
+
 ############################################################
 #                       HELP                               #
 ############################################################
 function HELP(){
     # Display help
-    echo "Script de instalación automática de neovim y configuración"
+    echo "Script de configuración automática"
     echo
     echo -e "\t-h\t Imprime la ayuda del script."
 }
@@ -49,12 +49,16 @@ function neovimINSTALL(){
     echo "Installing Node.js v18.x for Ubuntu..."
     curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
     sudo apt-get install -y nodejs
-
-    echo "Setting up neovim configuration files..."
-    cp -r ./nvim ~/.config
-
 }
 
+
+############################################################
+#                       DOTFILES INSTALLATION              #
+############################################################
+function dotfilesINSTALL(){
+    echo "Copying dotfiles..."
+    cp -r . ~/.config
+}
 
 ############################################################
 #                       MAIN                               #
@@ -63,15 +67,14 @@ function main(){
    # Actualmente sólo está soportada la versión Melodic Ubuntu
    # Establece las opciones por defecto si no se han especificado otras
     echo "Iniciando script..."
-    echo -e "Se va a porceder con la instalación de neovim"
-    read -p "¿Desea continuar? [S/n]" opcion
+    read -p "¿Desea isntalar NeoVim? [S/n]" opcion
     case $opcion in
-        S);;
-        s);;
+        S)neovimINSTALL;;
+        s)neovimINSTALL;;
         *)exit 0;;
     esac
 
-    neovimINSTALL
+    dotfilesINSTALL
 }
 
 

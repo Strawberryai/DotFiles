@@ -1,15 +1,17 @@
 # Introduction
-These are my [NeoVim](https://neovim.io/) configuration files. It includes my
-keybinds and plugins wich makes programming on the terminal more enjoyable.
+These are my linux configuration files. 
+It includes my [NeoVim](https://neovim.io/) keybinds and plugins wich makes programming on the terminal more enjoyable, my [Qtile](https://github.com/qtile/qtile) config files to transform my desktop enviroment and my terminal configuration to have the best of [Alacritty](https://github.com/alacritty/alacritty).
 
 # Installation
-To install NeoVim with this configuration use the installation script or follow these commands (on a Unix like
-system):
+To install all these programs and its configuration you can do it manually or
+with the provided installation script.
 
 Installation script:
 ```
 ./installer.bash
 ```
+
+## NeoVim
 
 Install neovim (apt):
 ```
@@ -29,11 +31,17 @@ curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
+## Alacritty
+
+## Qtile
+
+## Config files
+
 Set up the config files:
 ```
 mkdir ~/temp && cd ~/temp
-git clone https://github.com/Strawberryai/NvimConfig
-cp -r NvimConfig/nvim ~/.config
+git clone https://github.com/Strawberryai/DotFiles
+cp -r DotFiles/. ~/.config
 rm -rf ~/temp
 nvim #And inside vim make :PlugInstall
 ```
