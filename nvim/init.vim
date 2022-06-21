@@ -60,6 +60,7 @@ noremap <space> :/
 noremap <leader><cr> <cr><c-w>h:q<cr>
 noremap <leader>e :CocCommand explorer<CR>
 noremap <leader>t :Term<CR>
+noremap <leader>f :FZF<CR>
 " Vertical equivalent of C-w-n and C-w-N"
 noremap <leader>n :vnew<CR>
 
@@ -103,16 +104,28 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 "4. Plugin's section
 call plug#begin('~/.config/nvim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}     "Coc server
 Plug 'vim-airline/vim-airline'                      "Bottom and buffer bars
 Plug 'vim-airline/vim-airline-themes'               "Themes for Airline
-Plug 'bluz71/vim-nightfly-guicolors'                "Theme
+Plug 'neoclide/coc.nvim', {'branch': 'release'}     "CoC
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } "fuzzy finder
+Plug 'ayu-theme/ayu-vim'                            "Theme
+"Plug 'bluz71/vim-nightfly-guicolors'               "Theme
 call plug#end()
 
 "4.1 Plugin's configuration
-source ~/.config/nvim/coc-config.vim
 let g:airline_theme = 'molokai'
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#branch#enabled=1
@@ -125,7 +138,10 @@ endif
 let g:airline_symbols.space = "\ua0"
 let g:airline_powerline_fonts = 1
 
-colorscheme nightfly    "Name of the theme
+"let ayucolor="light"    "for light version of theme
+let ayucolor="mirage"   "for mirage version of theme
+"let ayucolor="dark"     "for dark version of theme
+colorscheme ayu         "Name of the theme
 set background=dark     "Sets the background color
 
 ".5 Terminal configuration
