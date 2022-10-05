@@ -45,3 +45,5 @@ cp -r DotFiles/. ~/.config
 rm -rf ~/temp
 nvim #And inside vim make :PlugInstall
 ```
+
+
