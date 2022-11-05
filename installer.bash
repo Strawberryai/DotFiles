@@ -49,6 +49,10 @@ function neovimINSTALL(){
     echo "Installing Node.js v18.x for Ubuntu..."
     curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
     sudo apt-get install -y nodejs
+
+    sudo add-apt-repository ppa:neovim-ppa/unstable
+    sudo apt-get update
+    sudo apt-get install neovim
 }
 
 
